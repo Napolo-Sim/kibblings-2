@@ -422,26 +422,6 @@ const Home = () => {
                     onChange={(e) => setMicrochip(e.target.value)}
                   />
                 </Form.Group>
-                <Form.Group controlId="vaccines">
-                  <Form.Label>Vaccines</Form.Label>
-                  {vaccineLabels.map((vacc) => {
-                    return (
-                      <div className="form-check">
-                        <input
-                          className="form-check-input"
-                          type="checkbox"
-                          value={vacc}
-                        />
-                        <label
-                          className="form-check-label"
-                          htmlFor="defaultCheck1"
-                        >
-                          {vacc}
-                        </label>
-                      </div>
-                    );
-                  })}
-                </Form.Group>
 
                 <Form.Group controlId="rabies">
                   <Form.Label>Rabies</Form.Label>

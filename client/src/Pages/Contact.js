@@ -111,7 +111,7 @@ const ContactPage = () => {
               </li>
               <li>
                 <MDBIcon icon="envelope" size="2x" className="blue-text mt-4" />
-                <p>contact@example.com</p>
+                <p>petkibblings@gmail.com</p>
               </li>
             </ul>
           </MDBCol>

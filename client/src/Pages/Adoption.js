@@ -18,15 +18,16 @@ import { PetCard } from "../components/Card";
 import Btn from "../components/Button";
 import "../components/Footer.css";
 import Axios from "axios";
-import { Form } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import AdoptionImage from "../components/Images/LandingAdoption2.mp4";
 
 const Adoption = (e) => {
-  const [petType, setPetType] = useState("type=");
-  const [petSize, setPetSize] = useState("&size=");
-  const [petAge, setPetAge] = useState("&age=");
-  const [petGender, setPetGender] = useState("&gender=");
-  const [petLocation, setPetLocation] = useState("&location=");
+  const [petType, setPetType] = useState();
+  const [petSize, setPetSize] = useState("");
+  const [petAge, setPetAge] = useState("");
+  const [petGender, setPetGender] = useState("");
+  const [petLocation, setPetLocation] = useState("");
+  const [petBreed, setPetBreed] = useState("");
   const [pets, setPet] = useState([]);
 
   let token = {};
@@ -38,7 +39,7 @@ const Adoption = (e) => {
       })
       .then((res) => {
         Axios.get(
-          `https://api.petfinder.com/v2/animals?${petType}${petSize}${petAge}${petGender}${petLocation}&page=1`,
+          `https://api.petfinder.com/v2/animals?${petType}${petBreed}${petSize}${petAge}${petGender}${petLocation}&page=1`,
           {
             headers: {
               Authorization: token.tokenType + " " + token.accessToken,
@@ -49,6 +50,7 @@ const Adoption = (e) => {
           console.log(res.data.animals);
         });
       });
+    document.getElementById("inlineForm").reset();
   };
   useEffect(() => {}, []);
 
@@ -78,14 +80,85 @@ const Adoption = (e) => {
                     a pet type such as cat, dog, or even horse in the search bar
                     below and find a pet thats right for you!
                   </p>
-                  <Forms
-                    placeholder="Search animals"
-                    className=" secondary form-control-lg col-md-8"
-                    btnSubmitText="Search"
-                    onChange={(e) => setPetType(e.target.value)}
-                    onClick={getPets}
-                    style={{ marginLeft: "20px" }}
-                  />
+
+                  <Form id="inlineForm" inline>
+                    <Form.Label htmlFor="inlineFormInputName2" srOnly>
+                      Pet Type
+                    </Form.Label>
+                    <Form.Control
+                      className="mb-2 mr-sm-1"
+                      id="inlineFormInputName2"
+                      placeholder="dog,cat..."
+                      htmlSize={13}
+                      onChange={(e) => setPetType("type=" + e.target.value)}
+                    />
+                    <Form.Label htmlFor="inlineFormInputName2" srOnly>
+                      Breed
+                    </Form.Label>
+                    <Form.Control
+                      className="mb-2 mr-sm-1"
+                      id="inlineFormInputName2"
+                      placeholder="pug"
+                      htmlSize={13}
+                      onChange={(e) => setPetBreed("&breed=" + e.target.value)}
+                    />
+
+                    <Form.Label htmlFor="inlineFormInputName2" srOnly>
+                      Size
+                    </Form.Label>
+                    <Form.Control
+                      className="mb-2 mr-sm-1"
+                      id="inlineFormInputName2"
+                      placeholder="small"
+                      htmlSize={13}
+                      onChange={(e) => setPetSize("&size=" + e.target.value)}
+                    />
+
+                    <Form.Label htmlFor="inlineFormInputName2" srOnly>
+                      Age
+                    </Form.Label>
+                    <Form.Control
+                      className="mb-2 mr-sm-1"
+                      id="inlineFormInputName2"
+                      placeholder="baby,adult"
+                      htmlSize={13}
+                      onChange={(e) => setPetAge("&age=" + e.target.value)}
+                    />
+
+                    <Form.Label htmlFor="inlineFormInputName2" srOnly>
+                      Gender
+                    </Form.Label>
+                    <Form.Control
+                      className="mb-2 mr-sm-1"
+                      id="inlineFormInputName2"
+                      placeholder="female"
+                      htmlSize={10}
+                      onChange={(e) =>
+                        setPetGender("&gender=" + e.target.value)
+                      }
+                    />
+
+                    <Form.Label htmlFor="inlineFormInputName2" srOnly>
+                      Location
+                    </Form.Label>
+                    <Form.Control
+                      className="mb-2 mr-sm-1"
+                      id="inlineFormInputName2"
+                      placeholder="San Francisco, CA"
+                      htmlSize={16}
+                      onChange={(e) =>
+                        setPetLocation("&location=" + e.target.value)
+                      }
+                    />
+                    <Button
+                      type="submit"
+                      className="mb-2"
+                      size="sm"
+                      onClick={getPets}
+                    >
+                      🔎
+                    </Button>
+                  </Form>
                 </MDBCol>
               </MDBCol>
             </MDBJumbotron>
