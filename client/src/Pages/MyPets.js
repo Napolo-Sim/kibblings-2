@@ -255,8 +255,8 @@ const MyPets = () => {
                     <Btn
                       variant="danger"
                       text="🗑"
-                      onClick={() => {
-                        Axios.delete(`/users/remove/${item._id}`, {
+                      onClick={async () => {
+                        await Axios.delete(`/users/remove/${item._id}`, {
                           headers: {
                             "x-auth-token": localStorage.getItem("auth-token"),
                           },

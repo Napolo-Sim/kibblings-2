@@ -2,10 +2,15 @@ import React from "react";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
+import { useHistory } from "react-router-dom";
 import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import "./Footer.css";
 
 export const Footer = () => {
+  const about = () => history.push("/about");
+  const contact = () => history.push("/contact");
+  const history = useHistory();
   return (
     // <div className="footer"
     // style={{ maxHeight: "10vh" }}
@@ -17,16 +22,15 @@ export const Footer = () => {
             <h5 className="title">ABOUT US</h5>
             <ul>
               <li className="list-unstyled">
-                <a href="/about">About Kibblings</a>
+                <p onClick={about}>About</p>
               </li>
+              <li className="list-unstyled"></li>
               <li className="list-unstyled">
-                <a href="#!">FAQs</a>
-              </li>
-              <li className="list-unstyled">
-                <a href="/contact">Contact Us</a>
+                <p onClick={contact}>Contact Us</p>
               </li>
             </ul>
           </MDBCol>
+
           <MDBCol className="column" md="3">
             <h5 className="title">PET CARE TOPICS</h5>
             <ul>

@@ -3,11 +3,7 @@ import Axios from "axios";
 import { ModalCenter } from "../components/Modal";
 import { Footer } from "../components/Footer";
 import { AccordParent, AccordChild } from "../components/Accordion";
-import {
-  MDBJumbotron,
-  MDBCol,
-  MDBCardTitle,
-} from "mdbreact";
+import { MDBJumbotron, MDBCol, MDBCardTitle } from "mdbreact";
 import { BannerTron } from "../components/Jumbotron";
 import {
   Button,
@@ -146,7 +142,6 @@ const Home = () => {
       <Container fluid style={{ minHeight: "80vh" }}>
         {/* <Jumbotron /> */}
         <Row className="mt-3 ml-5">
-
           <Col>
             <Button
               className="float-sm-rightt"
@@ -160,7 +155,6 @@ const Home = () => {
 
         <Row className="mt-3">
           <Col>
-
             <Carousel
               style={{
                 width: "100%",
@@ -186,7 +180,6 @@ const Home = () => {
                         />
                         {/* <Carousel.Caption> */}
                         <Row>
-
                           <Col>
                             <Card.Text>Pet:{item.name}</Card.Text>
                             <Card.Text>Pet Weight: {item.weight}</Card.Text>
@@ -194,19 +187,20 @@ const Home = () => {
                             <Card.Text>Age: {item.age}</Card.Text>
                           </Col>
 
-
                           <Col>
-                            <Card.Text>Last Vet Visit: {item.vetVisit}</Card.Text>
-                            <Card.Text>Last Grooming: {item.grooming}</Card.Text>
+                            <Card.Text>
+                              Last Vet Visit: {item.vetVisit}
+                            </Card.Text>
+                            <Card.Text>
+                              Last Grooming: {item.grooming}
+                            </Card.Text>
                             <Card.Text>Vaccines: {item.vaccines}</Card.Text>
                           </Col>
-
                         </Row>
                         {/* <h3>{item.name}</h3>
                       <p>{item.breed}</p> */}
                         {/* </Carousel.Caption> */}
                       </Card.Body>
-
                     </Card>
                   </Carousel.Item>
                 );
@@ -255,7 +249,6 @@ const Home = () => {
         )
       })} */}
           </Col>
-
         </Row>
 
         <Row className="mt-3 ml-5">
@@ -328,13 +321,17 @@ const Home = () => {
                       subject={item.subject}
                       content={item.note}
                       time={item.time}
-                      onClick={() => {
-                        Axios.delete(`/users/deleteReminder/${item._id}`, {
-                          headers: {
-                            "x-auth-token": localStorage.getItem("auth-token"),
-                          },
-                        });
-                        // reloads the page to update list(find way to improve)
+                      onClick={async () => {
+                        await Axios.delete(
+                          `/users/deleteReminder/${item._id}`,
+                          {
+                            headers: {
+                              "x-auth-token": localStorage.getItem(
+                                "auth-token"
+                              ),
+                            },
+                          }
+                        );
                         renderReminders();
                       }}
                     />
@@ -407,8 +404,7 @@ const Home = () => {
                     type="text"
                     placeholder="eg. Male"
                     onChange={(e) => setGender(e.target.value)}
-                  >
-                  </Form.Control>
+                  ></Form.Control>
                 </Form.Group>
                 <Form.Group controlId="birthday">
                   <Form.Label>Birthday</Form.Label>
@@ -467,7 +463,7 @@ const Home = () => {
             </Form>
           </Modal.Body>
         </Modal>
-      </Container >
+      </Container>
       <Footer />
     </>
   );
